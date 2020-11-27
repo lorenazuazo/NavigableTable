@@ -11,7 +11,7 @@
 
 .container-left{
     align-self: stretch;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     order: 0;
     padding: 10px;
 }
@@ -23,7 +23,7 @@
 
 .container-right{
     align-self: stretch;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     order: 0;
     padding: 10px;
 }

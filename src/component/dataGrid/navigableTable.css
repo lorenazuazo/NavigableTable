@@ -1,0 +1,15 @@
+/*ancho de la primera columna de la tabla*/
+.table tbody td:nth-of-type(1), .table thead th:nth-of-type(1){
+    width: 10%;
+}
+
+tbody { display: block; }
+tbody {
+    height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.table{
+    border: rgb(209, 208, 208) 1px solid;
+}

@@ -20,7 +20,8 @@ export const App = () => {
                     data={data}
                     loading={loading}
                     title={'Usuarios'}
-                    columns={['episode_id','title','series']}
+                    fields={['episode_id','title','series']}
+                    colTitle={['Id','Titulo','Series']}
                     />    
             }
                 

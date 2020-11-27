@@ -3,42 +3,44 @@ import PropTypes from 'prop-types'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './navigableTable.css'
+import { Tr } from './ui/Tr';
 
 
 
 export const NavigableTable = (props) => {
 
-    const {data,loading,title,columns} = props;
+    const {data,loading,title,colTitle,fields} = props;
     
     //const {episode_id,title,series} = !!data && data[0];
-
+    console.log(fields[0])
     
     //console.log(columns)
     return (
         <div >
             {title && <h5 id="table-title">{title}</h5>}
-            <table id="table" className="table table-sm">
+            <table className="table table-sm">
                 <thead>
                     <tr>
-                        { columns.map(col =>(
+                        { colTitle.map(col =>(
                             <th key={col}>
                                 {col}
                             </th>
                         ))}
                     </tr> 
                 </thead>
+            </table>
+
+            <table id="table" className="table table-sm">
                 <tbody>
                 {
                    !loading ? (
                        data.map(item =>(
-                        <tr key={item.episode_id}>
-                            <td>{item.episode_id}</td>
-                            <td>{item.title}</td>
-                            <td>{item.series}</td>
-                        </tr>   
-                       )
-
-                       )
+                            <Tr key={item[fields[0]]} 
+                                id={item[fields[0]]}
+                                item={item}
+                                fields={fields}
+                                />  
+                       ))
                     ):(
                         <tr>
                             <td colSpan={3}>Sin Coincidencias</td>
