@@ -1,32 +1,57 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import './style.css'
-//import { Input } from './Input';
+import './navigableTable.css'
 
 
-export const NavigableTable = () => {
+
+export const NavigableTable = (props) => {
+
+    const {data,loading,title,columns} = props;
+    
+    //const {episode_id,title,series} = !!data && data[0];
+
+    
+    //console.log(columns)
     return (
-        <div id="container-left">
+        <div >
+            {title && <h5 id="table-title">{title}</h5>}
             <table id="table" className="table table-sm">
-                
                 <thead>
                     <tr>
-                        <th>
-                          Nombre
-                        </th>
-                        <th>
-                          Apellido
-                        </th>
+                        { columns.map(col =>(
+                            <th key={col}>
+                                {col}
+                            </th>
+                        ))}
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Lorena</td>
-                        <td>zuazo</td>
-                    </tr>   
+                {
+                   !loading ? (
+                       data.map(item =>(
+                        <tr key={item.episode_id}>
+                            <td>{item.episode_id}</td>
+                            <td>{item.title}</td>
+                            <td>{item.series}</td>
+                        </tr>   
+                       )
+
+                       )
+                    ):(
+                        <tr>
+                            <td colSpan={3}>Sin Coincidencias</td>
+                        </tr>
+                    )}   
                 </tbody> 
             </table> 
         </div>
     )
+}
+
+NavigableTable.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    title: PropTypes.string
+
 }

@@ -1,0 +1,29 @@
+.flex-container{
+    align-content: stretch;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    margin-left: 10px;
+    justify-content: flex-start;
+}
+
+.container-left{
+    align-self: stretch;
+    flex: 1 1 auto;
+    order: 0;
+    padding: 10px;
+}
+  /* line verical separadora */
+.vl {
+    align-self: stretch;
+    border-left: 3px solid rgb(100, 99, 99);
+}
+
+.container-right{
+    align-self: stretch;
+    flex: 1 1 auto;
+    order: 0;
+    padding: 10px;
+}

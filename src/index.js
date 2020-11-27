@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { NavigableTable } from './component/dataGrid/NavigableTable';
-
+import { App } from './App';
 import './index.css';
 
+
 ReactDOM.render(
-    <NavigableTable />,
+    <App />,
   document.getElementById('root')
 );
 
