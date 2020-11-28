@@ -6,10 +6,9 @@ import './app.css'
 
 export const App = () => {
 
-    const state = useFetch(`https://www.breakingbadapi.com/api/episodes`);
+    const [state,setState] = useFetch(`https://www.breakingbadapi.com/api/episodes`);
     const{data,loading,error}= state;
-    
-    
+  
 
     return (
         <div className="flex-container">
@@ -21,7 +20,10 @@ export const App = () => {
                     loading={loading}
                     title={'Usuarios'}
                     fields={['episode_id','title','series']}
+                    colEditable={['title','series']}
                     colTitle={['Id','Titulo','Series']}
+                    searchFields={['Titulo','Series']}
+                    focus={'Titulo'}
                     />    
             }
                 

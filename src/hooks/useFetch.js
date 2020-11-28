@@ -24,5 +24,5 @@ export const useFetch = (url) => {
         });
     }, [url])
 
-    return state;
+    return [state,setState];
 }
