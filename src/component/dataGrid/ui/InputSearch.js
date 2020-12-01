@@ -9,7 +9,7 @@ export const InputSearch = (props) => {
         <>
              <Input 
                 placeholder={inputText} 
-                autoFocus={focus == inputText ? true : false}
+                autoFocus={focus === inputText ? true : false}
                 onKeyDown={cellFilterEventHandler}
                 onClick={updateTableView}
                 />

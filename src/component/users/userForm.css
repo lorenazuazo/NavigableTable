@@ -1,0 +1,13 @@
+.input-form{
+    outline: 0;
+    border-width: 0 0 1.8px;
+    border-color: rgb(94, 93, 93);
+}
+.input-form:focus {
+    border-color: rgb(88, 88, 247);
+  }
+/*para que no aparezca boton de subir o bajar los numeros*/
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}

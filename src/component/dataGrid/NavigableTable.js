@@ -1,4 +1,4 @@
-import React,{ useRef } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,27 +7,46 @@ import './navigableTable.css';
 import { Tr } from './ui/Tr';
 import { InputSearch } from './ui/InputSearch';
 import navigate from './helpers/navigate';
+import {getFields} from './helpers/service';
+
 
 
 export const NavigableTable = (props) => {
 
-    const {data,loading,title,colTitle,fields,colEditable,searchFields,focus} = props;
+    const {data,
+        title,
+        colTitle,
+        fields,
+        colEditable,
+        searchFields,
+        focus,
+        setCurrentRow} = props;
 
+    const cellEditable = useRef(false);
+    const cellInEdition = useRef(null);
+    const originalText = useRef(null);
     const cellPrevious = useRef(null);
 
+    const columns = getFields(fields);
     //const {episode_id,title,series} = !!data && data[0];
     //console.log(fields[0])
+
+    const cellFilterEventHandler = (e) =>{
+        const {startCell,id} =navigate.toInputSearch(e);
+        cellPrevious.current=startCell;
+        setCurrentRow(id);
+    }
     
-
-    const cellFilterEventHandler = (e)=>{
-        cellPrevious.current=navigate.toInputSearch(e)
+    const updateTableView = () => {
+        navigate.cleanPrevious(cellPrevious.current);
+        cellPrevious.current=null;
     }
 
-    const updateTableView = ()=>{
-        debugger
-        navigate.cleanPrevious(cellPrevious.current)
-        //console.log(cellPrevious.current)
-    }
+     const cellNavigationEventHandler = (e) => {
+        const {cellPrev,id}=navigate.toIntoTable(e,cellPrevious.current);
+        cellPrevious.current=cellPrev;
+        setCurrentRow(id);
+     }
 
     return (
         <div >
@@ -55,7 +74,6 @@ export const NavigableTable = (props) => {
                 </thead>
             </table>
 
-            {loading && <div className="alert alert-info text-center">Buscando Datos...</div>}
             {
               data ? (
                 <table id="table" className="table table-sm">
@@ -64,8 +82,9 @@ export const NavigableTable = (props) => {
                             <Tr key={item[fields[0]]} 
                                 id={item[fields[0]]}
                                 item={item}
-                                fields={fields}
+                                fields={columns}
                                 colEditable={colEditable}
+                                cellNavigationEventHandler={cellNavigationEventHandler}
                                 />  
                        ))}
                     </tbody> 
@@ -79,7 +98,6 @@ export const NavigableTable = (props) => {
 }
 
 NavigableTable.propTypes = {
-    loading: PropTypes.bool.isRequired,
     title: PropTypes.string,
     colTitle: PropTypes.array.isRequired,
     fields: PropTypes.array.isRequired,

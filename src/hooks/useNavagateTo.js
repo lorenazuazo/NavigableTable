@@ -9,9 +9,6 @@ export const useNavagateTo = (e) => {
         start.focus()
         start.style.backgroundColor = 'gray';
         start.style.color = 'white';
-        let cellPrevious = start
-        let row=document.getElementsByTagName("TD")[0].parentNode.rowIndex
-        //getItemCurrent(row)//devuelve el id del elemento que esta seleccionado
         return
     }
 }

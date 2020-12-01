@@ -27,3 +27,8 @@
     order: 0;
     padding: 10px;
 }
+/* margin Arriba | Derecha | Abajo | Izquierda */
+.loading{
+    margin: 100px 2em 0 2em;
+    padding: 30px;
+}
