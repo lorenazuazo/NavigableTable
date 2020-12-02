@@ -4,3 +4,7 @@
     outline: none;
 }
 
+.caret-hidden {
+    caret-color: transparent;
+}
+

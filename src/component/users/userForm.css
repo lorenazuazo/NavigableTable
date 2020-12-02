@@ -1,11 +1,82 @@
+.flex-container-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    padding: 20px;
+    height: 100%;
+}
+
+.form{
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+}
+
+.flex-btn{
+    order: 0;
+    flex: 0 1 auto;
+    align-self: center;
+}
+
+.grupo-flex1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.grupo{
+    position: relative;
+    margin-left: 20px;
+}
+
+:root{
+    --colorTextos: #49454567
+}
 .input-form{
+    border: none;
+    border-bottom: 1px solid var(--colorTextos);
+    display: block;
+    height: 40px;
+}
+
+.input-form:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(5, 5, 114);
+  } 
+
+.label-form{
+    color: var(--colorTextos);
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
+.input-form:focus~label,
+.input-form:valid~label{
+    top:-14px;
+    font-size: 13px;
+    color: rgb(111, 111, 114);
+}
+
+
+
+/* .input-form{
     outline: 0;
     border-width: 0 0 1.8px;
     border-color: rgb(94, 93, 93);
 }
 .input-form:focus {
     border-color: rgb(88, 88, 247);
-  }
+  } */
 /*para que no aparezca boton de subir o bajar los numeros*/
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;

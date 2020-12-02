@@ -12,6 +12,7 @@ const UserForm = ({currentItem}) => {
         
     },[currentItem]);
 
+
     const{register, errors, handleSubmit,setValue} = useForm({
         defaultValues:currentItem
     });
@@ -27,14 +28,15 @@ const UserForm = ({currentItem}) => {
     }
     
     return (
-        <div className = "mt-4">
-            <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-row">
-                <div className="form-group col-md-5">
-                <label className="label-form">Id</label> 
-                <input className="input-form" 
+        <>
+            <form className="user-form flex-container-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="form">
+              <div className="grupo-flex1">
+                <div className="grupo">
+                <input className="input-form"
                     type="number" 
                     name="episode_id"
+                    spellCheck={false}
                     ref={
                         register({
                             required:{value:true,message:'el nombre es obligatorio'},
@@ -42,17 +44,20 @@ const UserForm = ({currentItem}) => {
                             maxLength:{value:50,message:'maximo 50 letras'}
                         })
                     }
-                    />
+                    /><span className="barra"></span>
+                <label className="label-form">Id</label> 
+
                 <span className="text-danger text-small d-block mb-2">
                     {errors?.episode_id?.message}
                 </span>
                 </div>
 
-            <div className="form-group col-md-5">  
-                <label className="label-form" >Titulo</label>
-                <input className="input-form" 
+            <div className="grupo">  
+                
+                <input className="input-form"
                     type="text" 
                     name="title" 
+                    spellCheck={false}
                     ref={
                         register({
                             required:{value:true,message:'username es obligatorio'},
@@ -60,17 +65,18 @@ const UserForm = ({currentItem}) => {
                             maxLength:{value:50,message:'maximo 50 caracteres'}
                         })
                     }
-                />
+                /><span className="barra"></span>
+                <label className="label-form">Titulo</label>
                 <span className="text-danger text-small d-block mb-2">
                     {errors?.title?.message}
                 </span>
             </div>
 
-            <div className="form-group col-md-5">  
-                <label className="label-form" >Series</label>
-                <input className="input-form" 
+            <div className="grupo">  
+                <input className="input-form"
                     type="text" 
                     name="series" 
+                    spellCheck={false}
                     ref={
                         register({
                             required:{value:true,message:'username es obligatorio'},
@@ -78,19 +84,19 @@ const UserForm = ({currentItem}) => {
                             maxLength:{value:50,message:'maximo 50 caracteres'}
                         })
                     }
-                />
+                /><span className="barra"></span>
+                <label className="label-form">Series</label>
                 <span className="text-danger text-small d-block mb-2">
                     {errors?.series?.message}
                 </span>
-            </div>
-
-            
+                </div>
+            </div>            
         </div> 
-        <div className="boton btn-sm">
-            <button type="submit">Guardar</button>
+        <div className="boton btn-sm flex-btn">
+            <button type="submit" className="btn-form">Guardar</button>
         </div>
-        </form>
-        </div>
+    </form>
+    </>
         
     );
 }

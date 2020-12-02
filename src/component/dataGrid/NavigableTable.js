@@ -37,17 +37,18 @@ export const NavigableTable = (props) => {
         setCurrentRow(id);
     }
     
-    const updateTableView = () => {
-        navigate.cleanPrevious(cellPrevious.current);
-        cellPrevious.current=null;
+    const updateTableView = (e) => {
+        navigate.cleanPrevious(e,cellPrevious.current,searchFields);
+        //cellPrevious.current=null;
     }
 
      const cellNavigationEventHandler = (e) => {
-        const {cellPrev,id}=navigate.toIntoTable(e,cellPrevious.current);
+        const {cellPrev,id}=navigate.toIntoTable(e,cellPrevious.current,colEditable);
         cellPrevious.current=cellPrev;
         setCurrentRow(id);
      }
 
+  
     return (
         <div >
             {title && <h5 id="table-title">{title}</h5>}
@@ -59,6 +60,7 @@ export const NavigableTable = (props) => {
                             {
                                 searchFields.includes(col) ? (
                                     <InputSearch 
+                                        id={col}
                                         inputText={col} 
                                         focus={focus}
                                         cellFilterEventHandler={cellFilterEventHandler}
@@ -85,6 +87,7 @@ export const NavigableTable = (props) => {
                                 fields={columns}
                                 colEditable={colEditable}
                                 cellNavigationEventHandler={cellNavigationEventHandler}
+                                updateTableView={updateTableView}
                                 />  
                        ))}
                     </tbody> 
